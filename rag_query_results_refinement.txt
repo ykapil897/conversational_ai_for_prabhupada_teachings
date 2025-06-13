@@ -1,0 +1,97 @@
+Original Query: What does the Gita say about duty and action?
+Refined Query: Here's a refined query: `(duty OR action) AND (swadharma OR nishkamya)`
+
+Explanation:
+
+* `(duty OR action)`: This part of the query captures the user's interest in the Bhagavad Gita's discussion of duty and action. These terms are likely to appear in relevant verses.
+* `(swadharma OR nishkamya)`: These Sanskrit terms are central to the Bhagavad Gita's" discussion of duty
+
+Retrieved Context:
+REFERENCE: Bg. 4.17
+
+VERSE: karmaṇo hy api boddhavyaṁboddhavyaṁ ca vikarmaṇaḥakarmaṇaś ca boddhavyaṁgahanā karmaṇo gatiḥ
+
+TRANSLATION: The intricacies of action are very hard to understand. Therefore one should know properly what action is, what forbidden action is and what inaction is.
+
+PURPORT BY SRILA PRABHUPADA: If one is serious about liberation from material bondage, one has to understand the distinctions between action, inaction and unauthorized actions. One has to apply oneself to such an analysis of action, reaction and perverted actions because it is a very difficult subject matter. To understand Kṛṣṇa consciousness and action according to its modes, one has to learn one’s relationship with the Supreme; i.e., one who has learned perfectly knows that every living entity is an eternal servitor of the Lord and that consequently one has to act in Kṛṣṇa consciousness. The entire Bhagavad-gītā is directed toward this conclusion. Any other conclusions against this consciousness and its attendant actions are vikarmas, or prohibited actions. To understand all this one has to associate with authorities in Kṛṣṇa consciousness and learn the secret from them; this is as good as learning from the Lord directly. Otherwise, even the most intelligent persons will be bewildered.
+
+If one is serious about liberation from material bondage, one has to understand the distinctions between action, inaction and unauthorized actions. One has to apply oneself to such an analysis of action, reaction and perverted actions because it is a very difficult subject matter. To understand Kṛṣṇa consciousness and action according to its modes, one has to learn one’s relationship with the Supreme; i.e., one who has learned perfectly knows that every living entity is an eternal servitor of the Lord and that consequently one has to act in Kṛṣṇa consciousness. The entire Bhagavad-gītā is directed toward this conclusion. Any other conclusions against this consciousness and its attendant actions are vikarmas, or prohibited actions. To understand all this one has to associate with authorities in Kṛṣṇa consciousness and learn the secret from them; this is as good as learning from the Lord directly. Otherwise, even the most intelligent persons will be bewildered.
+
+URL: https://vedabase.io/en/library/bg/4/17/
+
+---
+
+REFERENCE: Bg. 13.4
+
+VERSE: tat kṣetraṁ yac ca yādṛk cayad-vikāri yataś ca yatsa ca yo yat-prabhāvaś catat samāsena me śṛṇu
+
+TRANSLATION: Now please hear My brief description of this field of activity and how it is constituted, what its changes are, whence it is produced, who that knower of the field of activities is, and what his influences are.
+
+PURPORT BY SRILA PRABHUPADA: The Lord is describing the field of activities and the knower of the field of activities in their constitutional positions. One has to know how this body is constituted, the materials of which this body is made, under whose control this body is working, how the changes are taking place, wherefrom the changes are coming, what the causes are, what the reasons are, what the ultimate goal of the individual soul is, and what the actual form of the individual soul is. One should also know the distinction between the individual living soul and the Supersoul, their different influences, their potentials, etc. One just has to understand this Bhagavad-gītā directly from the description given by the Supreme Personality of Godhead, and all this will be clarified. But one should be careful not to consider the Supreme Personality of Godhead in every body to be one with the individual soul, the jīva. This is something like equating the potent and the impotent.
+
+The Lord is describing the field of activities and the knower of the field of activities in their constitutional positions. One has to know how this body is constituted, the materials of which this body is made, under whose control this body is working, how the changes are taking place, wherefrom the changes are coming, what the causes are, what the reasons are, what the ultimate goal of the individual soul is, and what the actual form of the individual soul is. One should also know the distinction between the individual living soul and the Supersoul, their different influences, their potentials, etc. One just has to understand this Bhagavad-gītā directly from the description given by the Supreme Personality of Godhead, and all this will be clarified. But one should be careful not to consider the Supreme Personality of Godhead in every body to be one with the individual soul, the jīva. This is something like equating the potent and the impotent.
+
+URL: https://vedabase.io/en/library/bg/13/4/
+
+---
+
+REFERENCE: Bg. 4.42
+
+VERSE: tasmād ajñāna-sambhūtaṁhṛt-sthaṁ jñānāsinātmanaḥchittvainaṁ saṁśayaṁ yogamātiṣṭhottiṣṭha bhārata
+
+TRANSLATION: Therefore the doubts which have arisen in your heart out of ignorance should be slashed by the weapon of knowledge. Armed with yoga, O Bhārata, stand and fight.
+
+PURPORT BY SRILA PRABHUPADA: The yoga system instructed in this chapter is called sanātana-yoga, or eternal activities performed by the living entity. This yoga has two divisions of sacrificial actions: one is called sacrifice of one’s material possessions, and the other is called knowledge of self, which is pure spiritual activity. If sacrifice of one’s material possessions is not dovetailed for spiritual realization, then such sacrifice becomes material. But one who performs such sacrifices with a spiritual objective, or in devotional service, makes a perfect sacrifice. When we come to spiritual activities, we find that these are also divided into two: namely, understanding of one’s own self (or one’s constitutional position), and the truth regarding the Supreme Personality of Godhead. One who follows the path of Bhagavad-gītā as it is can very easily understand these two important divisions of spiritual knowledge. For him there is no difficulty in obtaining perfect knowledge of the self as part and parcel of the Lord. And such understanding is beneficial, for such a person can easily understand the transcendental activities of the Lord. In the beginning of this chapter, the transcendental activities of the Lord were discussed by the Supreme Lord Himself. One who does not understand the instructions of the Gītā is faithless, and is to be considered to be misusing the fragmental independence awarded to him by the Lord. In spite of such instructions, one who does not understand the real nature of the Lord as the eternal, blissful, all-knowing Personality of Godhead is certainly fool number one. Ignorance can be removed by gradual acceptance of the principles of Kṛṣṇa consciousness. Kṛṣṇa consciousness is awakened by different types of sacrifices to the demigods, sacrifice to Brahman, sacrifice in celibacy, in household life, in controlling the senses, in practicing mystic yoga, in penance, in forgoing material possessions, in studying the Vedas and in partaking of the social institution called varṇāśrama-dharma. All of these are known as sacrifice, and all of them are based on regulated action. But within all these activities, the important factor is self-realization. One who seeks that objective is the real student of Bhagavad-gītā, but one who doubts the authority of Kṛṣṇa falls back. One is therefore advised to study Bhagavad-gītā, or any other scripture, under a bona fide spiritual master, with service and surrender. A bona fide spiritual master is in the disciplic succession from time eternal, and he does not deviate at all from the instructions of the Supreme Lord as they were imparted millions of years ago to the sun-god, from whom the instructions of Bhagavad-gītā have come down to the earthly kingdom. One should, therefore, follow the path of Bhagavad-gītā as it is expressed in the Gītā itself and beware of self-interested people after personal aggrandizement who deviate others from the actual path. The Lord is definitely the supreme person, and His activities are transcendental. One who understands this is a liberated person from the very beginning of his study of Bhagavad-gītā.
+
+The yoga system instructed in this chapter is called sanātana-yoga, or eternal activities performed by the living entity. This yoga has two divisions of sacrificial actions: one is called sacrifice of one’s material possessions, and the other is called knowledge of self, which is pure spiritual activity. If sacrifice of one’s material possessions is not dovetailed for spiritual realization, then such sacrifice becomes material. But one who performs such sacrifices with a spiritual objective, or in devotional service, makes a perfect sacrifice. When we come to spiritual activities, we find that these are also divided into two: namely, understanding of one’s own self (or one’s constitutional position), and the truth regarding the Supreme Personality of Godhead. One who follows the path of Bhagavad-gītā as it is can very easily understand these two important divisions of spiritual knowledge. For him there is no difficulty in obtaining perfect knowledge of the self as part and parcel of the Lord. And such understanding is beneficial, for such a person can easily understand the transcendental activities of the Lord. In the beginning of this chapter, the transcendental activities of the Lord were discussed by the Supreme Lord Himself. One who does not understand the instructions of the Gītā is faithless, and is to be considered to be misusing the fragmental independence awarded to him by the Lord. In spite of such instructions, one who does not understand the real nature of the Lord as the eternal, blissful, all-knowing Personality of Godhead is certainly fool number one. Ignorance can be removed by gradual acceptance of the principles of Kṛṣṇa consciousness. Kṛṣṇa consciousness is awakened by different types of sacrifices to the demigods, sacrifice to Brahman, sacrifice in celibacy, in household life, in controlling the senses, in practicing mystic yoga, in penance, in forgoing material possessions, in studying the Vedas and in partaking of the social institution called varṇāśrama-dharma. All of these are known as sacrifice, and all of them are based on regulated action. But within all these activities, the important factor is self-realization. One who seeks that objective is the real student of Bhagavad-gītā, but one who doubts the authority of Kṛṣṇa falls back. One is therefore advised to study Bhagavad-gītā, or any other scripture, under a bona fide spiritual master, with service and surrender. A bona fide spiritual master is in the disciplic succession from time eternal, and he does not deviate at all from the instructions of the Supreme Lord as they were imparted millions of years ago to the sun-god, from whom the instructions of Bhagavad-gītā have come down to the earthly kingdom. One should, therefore, follow the path of Bhagavad-gītā as it is expressed in the Gītā itself and beware of self-interested people after personal aggrandizement who deviate others from the actual path. The Lord is definitely the supreme person, and His activities are transcendental. One who understands this is a liberated person from the very beginning of his study of Bhagavad-gītā.
+
+Thus end the Bhaktivedanta Purports to the Fourth Chapter of the Śrīmad Bhagavad-gītā in the matter of Transcendental Knowledge.
+
+Thus end the Bhaktivedanta Purports to the Fourth Chapter of the Śrīmad Bhagavad-gītā in the matter of Transcendental Knowledge.
+
+URL: https://vedabase.io/en/library/bg/4/42/
+
+Extracted Facts:
+Acknowledgment: Srila Prabhupada's contribution to the understanding of Bhagavad Gita is immense, and his purports provide valuable insights into the scripture.
+
+Here are the extracted key facts about duty and action from the Bhagavad Gita:
+
+FACT: Understanding action, inaction, and unauthorized actions is crucial for liberation from material bondage. | SOURCE: Bg. 4.17, Purport | QUOTE: "If one is serious about liberation from material bondage, one has to understand the distinctions between action, inaction and unauthorized actions." | URL: https://vedabase.io/en/library/bg/4/17/
+
+FACT: One must learn about the field of activities, its constitution, changes, production, and the knower of the field to understand action and duty. | SOURCE: Bg. 13.4, Purport | QUOTE: "One has to know how this body is constituted, the materials of which this body is made, under whose control this body is working, how the changes are taking place, wherefrom the changes are coming, what the causes are, what the reasons are, what the ultimate goal of the individual soul is, and what the actual form of the individual soul is." | URL: https://vedabase.io/en/library/bg/13/4/
+
+FACT: Doubts about duty and action can be removed by the weapon of knowledge, and one should stand and fight with the yoga of self-realization. | SOURCE: Bg. 4.42, Translation and Purport | QUOTE: "Therefore the doubts which have arisen in your heart out of ignorance should be slashed by the weapon of knowledge. Armed with yoga, O Bhārata, stand and fight." | URL: https://vedabase.io/en/library/bg/4/42/
+
+Final Answer:
+Hare Krishna, dear devotees! 🙏
+
+✨ Understanding Duty and Action: The Path to Liberation
+
+As we embark on our spiritual journey, it's essential to understand the concepts of duty and action. In the Bhagavad Gita, Lord Krishna guides us on how to navigate the complexities of action, inaction, and unauthorized actions.
+
+**Action, Inaction, and Unauthorized Actions**
+
+To achieve liberation from material bondage, we must comprehend the distinctions between action, inaction, and unauthorized actions. As Lord Krishna says, "If one is serious about liberation from material bondage, one has to understand the distinctions between action, inaction and unauthorized actions." [Bg. 4.17](https://vedabase.io/en/library/bg/4/17/)
+
+This understanding is crucial because our actions have consequences. When we perform actions with attachment, we become bound to the material world. On the other hand, when we perform actions selflessly, we can attain liberation.
+
+🕉️ The Field of Activities
+
+To truly understand action and duty, we need to know about the field of activities, its constitution, changes, production, and the knower of the field. As Lord Krishna explains, "One has to know how this body is constituted, the materials of which this body is made, under whose control this body is working, how the changes are taking place, wherefrom the changes are coming, what the causes are, what the reasons are, what the ultimate goal of the individual soul is, and what the actual form of the individual soul is." [Bg. 13.4](https://vedabase.io/en/library/bg/13/4/)
+
+This knowledge helps us understand our role in the world and how to perform our duties selflessly.
+
+**Removing Doubts with the Weapon of Knowledge**
+
+As we navigate the complexities of duty and action, doubts may arise. But fear not! Lord Krishna provides us with the solution: "Therefore the doubts which have arisen in your heart out of ignorance should be slashed by the weapon of knowledge. Armed with yoga, O Bhārata, stand and fight." [Bg. 4.42](https://vedabase.io/en/library/bg/4/42/)
+
+By arming ourselves with the yoga of self-realization, we can overcome doubts and perform our duties with clarity and purpose**
+
+In conclusion, understanding duty and action is essential for our spiritual growth. By grasping the concepts of action, inaction, and unauthorized actions, and by knowing the field of activities, we can perform our duties selflessly and attain liberation. When doubts arise, we can overcome them with the weapon of knowledge and the yoga of self-realization.
+
+Let us reflect on our actions and duties, and strive to perform them with clarity and purpose, guided by the wisdom of the Bhagavad Gita.
+
+Source Citations:
+- Bg. 4.17: Verse: ✓, Translation: ✓, Purport: ✓, URL: https://vedabase.io/en/library/bg/4/17/
+- Bg. 13.4: Verse: ✓, Translation: ✓, Purport: ✓, URL: https://vedabase.io/en/library/bg/13/4/
+- Bg. 4.42: Verse: ✓, Translation: ✓, Purport: ✓, URL: https://vedabase.io/en/library/bg/4/42/
