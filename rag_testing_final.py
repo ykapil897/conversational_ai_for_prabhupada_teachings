@@ -8,9 +8,11 @@ import time
 from sentence_transformers import SentenceTransformer
 from groq import Groq
 from typing import List, Dict, Any, Optional, Tuple
-import streamlit as st
+from dotenv import load_dotenv
+load_dotenv()
 
-api_key = st.secrets["groq"]["api_key"]
+# Access environment variables
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # Constants for book codes and their display names
 BOOK_CODES = {
@@ -53,7 +55,7 @@ INDEX_PATHS = {
 model = SentenceTransformer("BAAI/bge-large-en")
 
 # 2️⃣ Setup LLM client
-client = Groq(api_key=api_key)
+client = Groq(api_key=GROQ_API_KEY)
 
 class PrabhupadaRAG:
     def __init__(self):

@@ -4,10 +4,9 @@ import json
 from datetime import datetime, timedelta
 import pytz
 
-url = st.secrets["groq"]["api_key"]
-
 # API_URL = "http://localhost:8000"  # Assuming FastAPI runs locally
 API_URL = st.secrets["backend_url"]["url"]
+
 st.set_page_config(page_title="Devotional Assistant", layout="wide")
 
 if "user" not in st.session_state:

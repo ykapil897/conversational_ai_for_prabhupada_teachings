@@ -6,12 +6,13 @@ from typing import List, Dict, Any
 import unicodedata
 from groq import Groq
 from rag_testing_final import PrabhupadaRAG
-import streamlit as st
+from dotenv import load_dotenv
+load_dotenv()
 
-api_key = st.secrets["groq"]["api_key"]
-
+# Access environment variables
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 # Setup LLM client
-client = Groq(api_key=api_key)
+client = Groq(api_key=GROQ_API_KEY)
 
 def normalize_text(text: str) -> str:
     """Remove diacritics and lower the text for fair comparison"""
