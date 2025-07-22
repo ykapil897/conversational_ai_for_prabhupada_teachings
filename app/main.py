@@ -38,12 +38,16 @@ def process_query(
         result = rag_service.process_query_with_session(
             query=request.query,
             session_token=request.session_token,
+            custom_ratio=request.custom_ratio,
+            custom_length=request.custom_length,
+            custom_format=request.custom_format,
+            selected_sources=request.selected_sources,
             db=db
         )
         return result
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
-
+    
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(database.get_db)):
     # Check if user with email already exists
@@ -57,3 +61,65 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(database.get_db)
     db.commit()
     db.refresh(db_user)
     return db_user
+
+@app.post("/users/{user_id}/preferences", response_model=schemas.UserPreference)
+def set_user_preferences(
+    user_id: int,
+    preferences: schemas.UserPreferenceCreate,
+    db: Session = Depends(database.get_db)
+):
+    # Check if user exists
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Check if preferences already exist
+    existing_prefs = db.query(models.UserPreference).filter(
+        models.UserPreference.user_id == user_id
+    ).first()
+    
+    if existing_prefs:
+        # Update existing preferences
+        for key, value in preferences.dict().items():
+            setattr(existing_prefs, key, value)
+        db.commit()
+        db.refresh(existing_prefs)
+        return existing_prefs
+    
+    # Create new preferences
+    db_preferences = models.UserPreference(**preferences.dict())
+    db.add(db_preferences)
+    db.commit()
+    db.refresh(db_preferences)
+    return db_preferences
+
+@app.post("/users/{user_id}/sources", response_model=schemas.SourcePreference)
+def set_source_preferences(
+    user_id: int,
+    sources: schemas.SourcePreferenceCreate,
+    db: Session = Depends(database.get_db)
+):
+    # Check if user exists
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Check if source preferences already exist
+    existing_sources = db.query(models.SourcePreference).filter(
+        models.SourcePreference.user_id == user_id
+    ).first()
+    
+    if existing_sources:
+        # Update existing sources
+        for key, value in sources.dict().items():
+            setattr(existing_sources, key, value)
+        db.commit()
+        db.refresh(existing_sources)
+        return existing_sources
+    
+    # Create new source preferences
+    db_sources = models.SourcePreference(**sources.dict())
+    db.add(db_sources)
+    db.commit()
+    db.refresh(db_sources)
+    return db_sources

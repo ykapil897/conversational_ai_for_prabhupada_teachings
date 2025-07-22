@@ -275,7 +275,7 @@ Generate exactly {num_questions} cloze questions that test understanding of impo
 """
 
     def _parse_questions(self, response: str, quiz_type: str) -> List[Dict[str, Any]]:
-        """Parse the LLM response into structured questions."""
+        """Parse the LLM response into structured questions with clickable references."""
         questions = []
         
         # Split response into individual questions
@@ -288,7 +288,12 @@ Generate exactly {num_questions} cloze questions that test understanding of impo
                     question_text = block.split('A)')[0].strip()
                     options_text = 'A)' + block.split('A)')[1].split('Correct Answer:')[0]
                     correct_answer = re.search(r'Correct Answer:\s*([A-D])', block).group(1)
-                    verse_id = re.search(r'Verse Reference:\s*(Bg\.\s*\d+\.\d+)', block).group(1)
+                    verse_match = re.search(r'Verse Reference:\s*([\w\.\s]+)', block)
+                    verse_id = verse_match.group(1) if verse_match else "Unknown verse"
+                    
+                    # Extract URL if present
+                    url_match = re.search(r'URL:\s*(https?://[^\s]+)', block)
+                    url = url_match.group(1) if url_match else ""
                     
                     # Extract options
                     options = {}
@@ -297,35 +302,48 @@ Generate exactly {num_questions} cloze questions that test understanding of impo
                         if match:
                             options[opt] = match.group(1).strip()
                     
+                    # Add reference link if URL is available
+                    reference = f"[{verse_id}]({url})" if url else verse_id
+                    
                     questions.append({
                         "question_text": question_text,
                         "options": options,
                         "correct_answer": correct_answer,
-                        "verse_id": verse_id
+                        "verse_id": verse_id,
+                        "reference_link": reference
                     })
                     
                 else:  # cloze
-                    # Parse cloze format
+                    # Parse cloze format with similar enhancements for references
                     question_text = block.split('Correct Answer')[0].strip()
                     correct_answer = re.search(r'Correct Answer\(?s?\)?:\s*([^\n]+)', block).group(1).strip()
-                    verse_id = re.search(r'Verse Reference:\s*(Bg\.\s*\d+\.\d+)', block).group(1)
+                    verse_match = re.search(r'Verse Reference:\s*([\w\.\s]+)', block)
+                    verse_id = verse_match.group(1) if verse_match else "Unknown verse"
+                    
+                    # Extract URL if present
+                    url_match = re.search(r'URL:\s*(https?://[^\s]+)', block)
+                    url = url_match.group(1) if url_match else ""
                     
                     # For cloze, options are the correct answers
                     options = {
                         "answers": [ans.strip() for ans in correct_answer.split(',')]
                     }
                     
+                    # Add reference link if URL is available
+                    reference = f"[{verse_id}]({url})" if url else verse_id
+                    
                     questions.append({
                         "question_text": question_text,
                         "options": options,
                         "correct_answer": correct_answer,
-                        "verse_id": verse_id
+                        "verse_id": verse_id,
+                        "reference_link": reference
                     })
             except Exception as e:
                 # Skip malformed questions
                 print(f"Error parsing question: {e}")
                 continue
-                
+                    
         return questions
     
     def submit_answers(self, db: Session, submission: schemas.QuizSubmitRequest) -> models.Quiz:

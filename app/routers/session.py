@@ -67,3 +67,34 @@ def update_last_query(session_token: str, query: str, db: Session = Depends(data
     db.commit()
     db.refresh(db_session)
     return db_session
+
+@router.put("/{session_token}/devotee_level", response_model=schemas.Session)
+def update_devotee_level(
+    session_token: str, 
+    level: str = "intermediate",
+    db: Session = Depends(database.get_db)
+):
+    """Update the devotee level of the user."""
+    # Validate level
+    if level not in ["neophyte", "intermediate", "advanced"]:
+        raise HTTPException(status_code=400, detail="Invalid devotee level. Must be 'neophyte', 'intermediate' or 'advanced'")
+        
+    db_session = db.query(models.Session).filter(models.Session.session_token == session_token).first()
+    if db_session is None:
+        raise HTTPException(status_code=404, detail="Session not found")
+    
+    # Get or create user preferences
+    user_prefs = db.query(models.UserPreference).filter(
+        models.UserPreference.user_id == db_session.user_id
+    ).first()
+    
+    if not user_prefs:
+        user_prefs = models.UserPreference(user_id=db_session.user_id)
+        db.add(user_prefs)
+    
+    # Update devotee level
+    user_prefs.devotee_level = level
+    db.commit()
+    db.refresh(db_session)
+    
+    return db_session

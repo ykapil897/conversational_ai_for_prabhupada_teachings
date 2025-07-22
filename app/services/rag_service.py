@@ -27,6 +27,10 @@ class RAGService:
         self, 
         query: str, 
         session_token: str,
+        custom_ratio: Optional[int] = None,
+        custom_length: Optional[str] = None,
+        custom_format: Optional[str] = None,
+        selected_books: Optional[List[str]] = None,
         db: Session
     ) -> Dict[str, Any]:
         # Get session data
@@ -37,20 +41,62 @@ class RAGService:
         if not db_session:
             raise ValueError("Invalid session token")
         
-        # Get last verses read by user
+        # Get user preferences
+        user_prefs = db.query(models.UserPreference).filter(
+            models.UserPreference.user_id == db_session.user_id
+        ).first()
+        
+        if not user_prefs:
+            # Create default preferences if none exist
+            user_prefs = models.UserPreference(user_id=db_session.user_id)
+            db.add(user_prefs)
+            db.commit()
+        
+        # Get source preferences
+        source_prefs = db.query(models.SourcePreference).filter(
+            models.SourcePreference.user_id == db_session.user_id
+        ).first()
+        
+        if not source_prefs:
+            # Create default source preferences if none exist
+            source_prefs = models.SourcePreference(user_id=db_session.user_id)
+            db.add(source_prefs)
+            db.commit()
+        
+        # Get last verses read by user and bookmarks (unchanged)
         verse_histories = db.query(models.VerseHistory).filter(
             models.VerseHistory.session_id == db_session.id
         ).order_by(models.VerseHistory.timestamp.desc()).limit(5).all()
         
         last_verses = [vh.verse_id for vh in verse_histories]
         
-        # Get user's verse memories and bookmarks
         user_memories = db.query(models.VerseMemory).filter(
             models.VerseMemory.user_id == db_session.user_id,
             models.VerseMemory.bookmarked == True
         ).all()
         
         bookmarked_verses = [vm.verse_id for vm in user_memories]
+        
+        # Use selected preferences for this query or default to user preferences
+        prabhupada_ratio = custom_ratio if custom_ratio is not None else user_prefs.prabhupada_ratio
+        answer_length = custom_length if custom_length else user_prefs.preferred_answer_length
+        answer_format = custom_format if custom_format else user_prefs.preferred_format
+        devotee_level = user_prefs.devotee_level
+        
+        # Handle source selection for this query
+        if selected_sources:
+            source_config = {"selected_sources": selected_sources}
+        else:
+            source_config = {
+                "bg_enabled": source_prefs.bg_enabled,
+                "sb_enabled": source_prefs.sb_enabled,
+                "cc_enabled": source_prefs.cc_enabled,
+                "other_books_enabled": source_prefs.other_books_enabled,
+                "specific_books": source_prefs.specific_books,
+                "lectures_enabled": source_prefs.lectures_enabled,
+                "letters_enabled": source_prefs.letters_enabled,
+                "conversations_enabled": source_prefs.conversations_enabled
+            }
         
         # Enhance query with session context
         enhanced_query = self._enhance_query_with_context(
@@ -60,15 +106,21 @@ class RAGService:
             db_session.streak_days
         )
         
-        # Use the enhanced query with your existing RAG system
-        rag_result = rag_testing.process_query(enhanced_query)
+        # Process the query with customizations
+        rag_result = rag_testing.process_query(
+            enhanced_query,
+            prabhupada_ratio=prabhupada_ratio,
+            answer_length=answer_length,
+            answer_format=answer_format,
+            devotee_level=devotee_level,
+            source_config=source_config
+        )
         
-        # Extract verse references from the response
+        # Extract verse references and update history
         verse_refs = self._extract_verse_references(rag_result["final_answer"])
         
-        # If we found verse references, add the most specific one to the user's verse history
         if verse_refs:
-            most_specific_verse = verse_refs[0]  # Usually the first mentioned is most relevant
+            most_specific_verse = verse_refs[0]
             self._add_verse_to_history(most_specific_verse, db_session.id, db)
         
         # Update session's last query
@@ -79,8 +131,38 @@ class RAGService:
             "answer": rag_result["final_answer"],
             "retrieved_verses": verse_refs,
             "last_verse": most_specific_verse if verse_refs else None,
-            "streak_days": db_session.streak_days
+            "streak_days": db_session.streak_days,
+            "prabhupada_ratio": prabhupada_ratio,  # Include ratio in response
+            "sources_used": rag_result.get("sources_used", [])  # Include sources used
         }
+    
+    def _detect_question_format(self, query: str) -> str:
+        """Detect if the query is a specific question format."""
+        query_lower = query.lower()
+        
+        # True/False detection
+        if "true or false" in query_lower or "true/false" in query_lower:
+            return "true_false"
+        
+        # MCQ detection
+        mcq_patterns = [
+            r'(?:which|what).*?\ba\)\s.*?\bb\)\s',
+            r'\b[a-d]\)\s.*?\b[a-d]\)\s',
+            r'multiple choice'
+        ]
+        for pattern in mcq_patterns:
+            if re.search(pattern, query_lower):
+                return "mcq"
+        
+        # Fill in the blank detection
+        if "fill in the blank" in query_lower or "___" in query or "..." in query:
+            return "fill_blank"
+        
+        # Matching detection
+        if "match the following" in query_lower or "matching" in query_lower:
+            return "matching"
+        
+        return "general"
     
     def _enhance_query_with_context(
         self, 
@@ -133,8 +215,6 @@ class RAGService:
         )
         db.add(history_entry)
         db.commit()
-
-    # ... existing code ...
 
     def process_prompt_directly(self, prompt: str) -> str:
         """Process a prompt directly with the LLM without RAG retrieval."""

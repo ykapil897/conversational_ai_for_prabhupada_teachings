@@ -1,5 +1,5 @@
 # models.py
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text, Boolean
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Text, Boolean, ARRAY
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import datetime
@@ -14,9 +14,14 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     created_at = Column(DateTime, default=func.now())
     
+    # Simplified book selection
+    selected_books = Column(ARRAY(String), default=["bg"])  # Default to Bhagavad Gita
+    total_books = Column(ARRAY(String), default=["bg", "sb", "cc", "ssr", "bbd", "ej", "ekc", "iso","kb", "lcfl", "lob", "mg", "mm", "mog", "nbs", "nod", "noi", "owk", "pop", "poy", "pqpa", "rv", "tlc", "tlk", "tqk", "ttp", "tys"])             # Default current book
+    
     # Relationships
     sessions = relationship("Session", back_populates="user")
     verse_memories = relationship("VerseMemory", back_populates="user")
+    preferences = relationship("UserPreference", back_populates="user", uselist=False, cascade="all, delete-orphan")
 
 class Session(Base):
     __tablename__ = "sessions"
@@ -94,3 +99,50 @@ class QuizQuestion(Base):
 
 # Update the User model to include relationship with quizzes
 User.quizzes = relationship("Quiz", back_populates="user")
+
+# Add after existing model definitions
+
+class UserPreference(Base):
+    __tablename__ = "user_preferences"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), unique=True)
+    devotee_level = Column(String, default="intermediate")  # neophyte, intermediate, advanced
+    prabhupada_ratio = Column(Integer, default=70)  # percentage of original content vs. AI explanation
+    preferred_answer_length = Column(String, default="medium")  # short, medium, long
+    preferred_format = Column(String, default="conversational")  # conversational, academic, scriptural
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    
+    # Relationship
+    user = relationship("User", back_populates="preferences")
+
+class SourcePreference(Base):
+    __tablename__ = "source_preferences"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), unique=True)
+    
+    # Scriptures
+    bg_enabled = Column(Boolean, default=True)  # Bhagavad Gita
+    sb_enabled = Column(Boolean, default=True)  # Srimad Bhagavatam
+    cc_enabled = Column(Boolean, default=True)  # Sri Caitanya Caritamrta
+    
+    # Other books (enable all by default)
+    other_books_enabled = Column(Boolean, default=True)  # All other books
+    specific_books = Column(Text, nullable=True)  # JSON list of specific books if not using all
+    
+    # Other sources
+    lectures_enabled = Column(Boolean, default=True)
+    letters_enabled = Column(Boolean, default=True)
+    conversations_enabled = Column(Boolean, default=True)
+    
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    
+    # Relationship
+    user = relationship("User", back_populates="source_preferences")
+
+# Update User model to include these relationships
+User.preferences = relationship("UserPreference", back_populates="user", uselist=False, cascade="all, delete-orphan")
+User.source_preferences = relationship("SourcePreference", back_populates="user", uselist=False, cascade="all, delete-orphan")

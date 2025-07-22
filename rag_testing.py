@@ -10,10 +10,10 @@ from groq import Groq
 model = SentenceTransformer("BAAI/bge-large-en")
 
 # 2️⃣ Load FAISS index
-index = faiss.read_index("gita_index.faiss")
+index = faiss.read_index("/content/gita_index.faiss")
 
 # 3️⃣ Load metadata (structured and formatted)
-with open("gita_metadata.json", "r") as f:
+with open("/content/gita_metadata.json", "r") as f:
     structured_metadata = json.load(f)
 
 # Create formatted metadata with clear section separation for source attribution AND clickable URLs
@@ -358,8 +358,5 @@ def process_query(original_query):
         "retrieval_sources": retrieval_sources
     }
 
-# Make the function available for import
-
-    # Example usage
-query = "Explain about the chapter 3"
+query = input("Ask your Question: ")
 process_query(query)

@@ -6,6 +6,7 @@ from datetime import datetime
 class UserBase(BaseModel):
     username: str
     email: EmailStr
+    selected_books: List[str] = ["bg"] 
 
 class UserCreate(UserBase):
     pass
@@ -68,6 +69,10 @@ class VerseMemory(VerseMemoryBase):
 class QueryRequest(BaseModel):
     query: str
     session_token: str
+    custom_ratio: Optional[int] = None  # Override user's default ratio for this query
+    custom_length: Optional[str] = None  # Override user's default length for this query
+    custom_format: Optional[str] = None  # Override user's default format for this query
+    selected_books: Optional[List[str]] = None  # Override source selection for this query
 
 class QueryResponse(BaseModel):
     answer: str
@@ -131,3 +136,43 @@ class QuizSubmitAnswer(BaseModel):
 class QuizSubmitRequest(BaseModel):
     quiz_id: int
     answers: List[QuizSubmitAnswer]
+
+class UserPreferenceBase(BaseModel):
+    devotee_level: str = "intermediate"  # neophyte, intermediate, advanced
+    prabhupada_ratio: int = 70  # percentage of original content
+    preferred_answer_length: str = "medium"  # short, medium, long
+    preferred_format: str = "conversational"  # conversational, academic, scriptural
+
+class UserPreferenceCreate(UserPreferenceBase):
+    user_id: int
+
+class UserPreference(UserPreferenceBase):
+    id: int
+    user_id: int
+    created_at: datetime
+    updated_at: datetime
+    
+    class Config:
+        orm_mode = True
+
+class SourcePreferenceBase(BaseModel):
+    bg_enabled: bool = True
+    sb_enabled: bool = True
+    cc_enabled: bool = True
+    other_books_enabled: bool = True
+    specific_books: Optional[str] = None  # JSON list of specific books
+    lectures_enabled: bool = True
+    letters_enabled: bool = True
+    conversations_enabled: bool = True
+
+class SourcePreferenceCreate(SourcePreferenceBase):
+    user_id: int
+
+class SourcePreference(SourcePreferenceBase):
+    id: int
+    user_id: int
+    created_at: datetime
+    updated_at: datetime
+    
+    class Config:
+        orm_mode = True
