@@ -48,7 +48,9 @@ INDEX_PATHS = {
     "bg": "faiss/gita_index.faiss",
     "sb": "faiss/sb_index.faiss",
     "cc": "faiss/cc_index.faiss",
-    "unified": "faiss/unified_index_split_500.faiss"
+    "unified": "faiss/unified_index_split_500.faiss",
+    "letters": "faiss/letters_data_index.faiss",
+    "spokens": "faiss/spoken_data_split_500_index.faiss"
 }
 
 # 1️⃣ Load embedding model once for all searches

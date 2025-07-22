@@ -8,9 +8,12 @@ from rag_testing_final import PrabhupadaRAG
 app = FastAPI()
 init_db()
 
-rag_model = PrabhupadaRAG()
-quiz_gen = QuizGenerator()
+# rag_model = PrabhupadaRAG()
+# quiz_gen = QuizGenerator()
 
+@app.get("/")
+def hello():
+    return {"message": "Hello, world!"}
 
 class QueryRequest(BaseModel):
     username: str
