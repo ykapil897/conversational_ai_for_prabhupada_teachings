@@ -6,9 +6,12 @@ from typing import List, Dict, Any
 import unicodedata
 from groq import Groq
 from rag_testing_final import PrabhupadaRAG
+import streamlit as st
+
+api_key = st.secrets["groq"]["api_key"]
 
 # Setup LLM client
-client = Groq(api_key=os.environ.get("GROQ_API_KEY", "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"))
+client = Groq(api_key=api_key)
 
 def normalize_text(text: str) -> str:
     """Remove diacritics and lower the text for fair comparison"""
