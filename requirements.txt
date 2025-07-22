@@ -9,3 +9,4 @@ requests
 pytz
 groq 
 dotenv
+psutil

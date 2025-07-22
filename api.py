@@ -4,12 +4,23 @@ from sqlalchemy.orm import Session
 from db_manager import get_db, init_db, get_user_by_username, store_query, store_quiz_result, store_verse_read, create_or_update_user
 from quiz_generator import QuizGenerator
 from rag_testing_final import PrabhupadaRAG
+import psutil, os
+
+def print_memory_usage(stage=""):
+    process = psutil.Process(os.getpid())
+    mem = process.memory_info().rss / (1024 * 1024)  # in MB
+    print(f"[MEMORY {stage}] Used: {mem:.2f} MB")
+
 
 app = FastAPI()
 init_db()
 
-# rag_model = PrabhupadaRAG()
-# quiz_gen = QuizGenerator()
+print_memory_usage("Before model load")
+rag_model = PrabhupadaRAG()
+print_memory_usage("After rag_model")
+
+quiz_gen = QuizGenerator()
+print_memory_usage("After quiz_gen")
 
 @app.get("/")
 def hello():

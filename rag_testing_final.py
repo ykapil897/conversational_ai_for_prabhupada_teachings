@@ -9,6 +9,14 @@ from sentence_transformers import SentenceTransformer
 from groq import Groq
 from typing import List, Dict, Any, Optional, Tuple
 from dotenv import load_dotenv
+import psutil, os
+
+def print_memory_usage(stage=""):
+    process = psutil.Process(os.getpid())
+    mem = process.memory_info().rss / (1024 * 1024)  # in MB
+    print(f"[MEMORY {stage}] Used: {mem:.2f} MB")
+
+
 load_dotenv()
 
 # Access environment variables
@@ -92,9 +100,12 @@ class PrabhupadaRAG:
             "pop": "Path of Perfection"
         } 
 
+        print_memory_usage("Before loading metadata and faiss")
         # Initialize book data
         for book_code in BOOK_CODES:
             self._load_book_data(book_code)
+            print_memory_usage(f"After loading {book_code} metadata and faiss")
+
         
         # Cache for storing retrieved but unused results
         self.cached_results = {}
