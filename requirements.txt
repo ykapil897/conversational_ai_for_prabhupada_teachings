@@ -8,3 +8,4 @@ uvicorn
 requests
 pytz
 groq 
+dotenv
