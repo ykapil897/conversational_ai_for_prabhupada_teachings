@@ -11,16 +11,9 @@ def print_memory_usage(stage=""):
     mem = process.memory_info().rss / (1024 * 1024)  # in MB
     print(f"[MEMORY {stage}] Used: {mem:.2f} MB")
 
-
 app = FastAPI()
 init_db()
 
-print_memory_usage("Before model load")
-rag_model = PrabhupadaRAG()
-print_memory_usage("After rag_model")
-
-quiz_gen = QuizGenerator()
-print_memory_usage("After quiz_gen")
 
 @app.get("/")
 def hello():
@@ -69,6 +62,10 @@ def process_query(data: QueryRequest, db: Session = Depends(get_db)):
         "devotee_level": user.devotee_level
     }
 
+    print_memory_usage("Before model load")
+    rag_model = PrabhupadaRAG()
+    print_memory_usage("After rag_model")
+
     final_answer = rag_model.process_query(data.query, preferences["prabhupada_ratio"],
                                            preferences["answer_length"], preferences["answer_format"],
                                            preferences["devotee_level"])
@@ -81,6 +78,10 @@ def generate_quiz(data: QuizRequest, db: Session = Depends(get_db)):
     user = get_user_by_username(db, data.username)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
+
+    print_memory_usage("Before model load")
+    quiz_gen = QuizGenerator()
+    print_memory_usage("After quiz_gen")
 
     quiz = quiz_gen.generate_quiz(
         query=data.topic,
@@ -96,6 +97,10 @@ def submit_answers(submission: QuizSubmission, db: Session = Depends(get_db)):
     user = get_user_by_username(db, submission.username)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
+
+    print_memory_usage("Before model load")
+    quiz_gen = QuizGenerator()
+    print_memory_usage("After quiz_gen")
 
     results = quiz_gen.check_answers(submission.quiz_data, submission.user_answers)
 
